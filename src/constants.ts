@@ -26,14 +26,6 @@ export const INIT_CODE_HASH_MAP = {
   [ChainId.BSC_TESTNET]: '0xde779d283b8738f357e793b9d75c6a3c198479994ba2b4882e5843d46b762857'
 };
 
-export const ETHER_DECIMALS_NAMES_SYMBOLS_MAP = {
-  [ChainId.BSC_TESTNET]: {
-    decimals: 18,
-    name: 'Binance Coin',
-    symbol: 'BNB'
-  }
-};
-
 export const DEFAULT_RPC_URLS_MAP = {
   [ChainId.BSC_TESTNET]: 'https://data-seed-prebsc-1-s3.binance.org:8545'
 };
