@@ -1,4 +1,4 @@
-import { ChainId, ETHER_DECIMALS_NAMES_SYMBOLS_MAP } from '../constants';
+import { ChainId } from '../constants';
 import invariant from 'tiny-invariant';
 
 import { Currency, ETHER } from './currency';
@@ -14,21 +14,19 @@ export class Route {
   public readonly midPrice: Price;
 
   public constructor(pairs: Pair[], input: Currency, output?: Currency) {
-    const etherMap = ETHER_DECIMALS_NAMES_SYMBOLS_MAP[pairs[0].chainId];
     invariant(pairs.length > 0, 'PAIRS');
     invariant(
       pairs.every((pair) => pair.chainId === pairs[0].chainId),
       'CHAIN_IDS'
     );
     invariant(
-      (input instanceof Token && pairs[0].involvesToken(input)) ||
-        (input === ETHER(etherMap.decimals, etherMap.name, etherMap.symbol) && pairs[0].involvesToken(WETH[pairs[0].chainId])),
+      (input instanceof Token && pairs[0].involvesToken(input)) || (input === ETHER && pairs[0].involvesToken(WETH[pairs[0].chainId])),
       'INPUT'
     );
     invariant(
       typeof output === 'undefined' ||
         (output instanceof Token && pairs[pairs.length - 1].involvesToken(output)) ||
-        (output === ETHER(etherMap.decimals, etherMap.name, etherMap.symbol) && pairs[pairs.length - 1].involvesToken(WETH[pairs[0].chainId])),
+        (output === ETHER && pairs[pairs.length - 1].involvesToken(WETH[pairs[0].chainId])),
       'OUTPUT'
     );
 

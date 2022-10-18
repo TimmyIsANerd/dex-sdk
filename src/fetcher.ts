@@ -31,17 +31,12 @@ export abstract class Fetcher {
    * @param symbol optional symbol of the token
    * @param name optional name of the token
    */
-  public static async fetchTokenData(
-    chainId: ChainId,
-    address: string,
-    rpcUrl = DEFAULT_RPC_URLS_MAP[chainId],
-    symbol?: string,
-    name?: string
-  ): Promise<Token> {
+  public static async fetchTokenData(chainId: ChainId, address: string, rpcUrl = DEFAULT_RPC_URLS_MAP[chainId]): Promise<Token> {
+    const contract = new Contract(address, erc20Abi, new JsonRpcProvider(rpcUrl) as Provider);
     const parsedDecimals =
       typeof TOKEN_DECIMALS_CACHE?.[chainId]?.[address] === 'number'
         ? TOKEN_DECIMALS_CACHE[chainId][address]
-        : await new Contract(address, erc20Abi, new JsonRpcProvider(rpcUrl) as Provider).decimals().then((decimals: number): number => {
+        : await contract.decimals().then((decimals: number): number => {
             TOKEN_DECIMALS_CACHE = {
               ...TOKEN_DECIMALS_CACHE,
               [chainId]: {
@@ -51,6 +46,9 @@ export abstract class Fetcher {
             };
             return decimals;
           });
+
+    const name = await contract.name();
+    const symbol = await contract.symbol();
     return new Token(chainId, address, parsedDecimals, symbol, name);
   }
 

@@ -5,7 +5,7 @@ import JSBI from 'jsbi';
 import _Big from 'big.js';
 import toFormat from 'toformat';
 
-import { BigintIsh, Rounding, TEN, SolidityType, ChainId, ETHER_DECIMALS_NAMES_SYMBOLS_MAP } from '../../constants';
+import { BigintIsh, Rounding, TEN, SolidityType } from '../../constants';
 import { parseBigintIsh, validateSolidityTypeInstance } from '../../utils';
 import { Fraction } from './fraction';
 
@@ -18,9 +18,8 @@ export class CurrencyAmount extends Fraction {
    * Helper that calls the constructor with the ETHER currency
    * @param amount ether amount in wei
    */
-  public static ether(amount: BigintIsh, chainId: ChainId): CurrencyAmount {
-    const etherMap = ETHER_DECIMALS_NAMES_SYMBOLS_MAP[chainId];
-    return new CurrencyAmount(ETHER(etherMap.decimals, etherMap.name, etherMap.symbol), amount);
+  public static ether(amount: BigintIsh): CurrencyAmount {
+    return new CurrencyAmount(ETHER, amount);
   }
 
   // amount _must_ be raw, i.e. in the native representation

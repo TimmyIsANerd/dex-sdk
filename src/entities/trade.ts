@@ -1,7 +1,7 @@
 import invariant from 'tiny-invariant';
 import { InsufficientInputAmountError, InsufficientReservesError } from '..';
 
-import { ChainId, ETHER_DECIMALS_NAMES_SYMBOLS_MAP, ONE, TradeType, ZERO } from '../constants';
+import { ChainId, ONE, TradeType, ZERO } from '../constants';
 import { sortedInsert } from '../utils';
 import { Currency, ETHER } from './currency';
 import { CurrencyAmount } from './fractions/currencyAmount';
@@ -89,16 +89,14 @@ export interface BestTradeOptions {
  * the input currency amount.
  */
 function wrappedAmount(currencyAmount: CurrencyAmount, chainId: ChainId): TokenAmount {
-  const etherMap = ETHER_DECIMALS_NAMES_SYMBOLS_MAP[chainId];
   if (currencyAmount instanceof TokenAmount) return currencyAmount;
-  if (currencyAmount.currency === ETHER(etherMap.decimals, etherMap.name, etherMap.symbol)) return new TokenAmount(WETH[chainId], currencyAmount.raw);
+  if (currencyAmount.currency === ETHER) return new TokenAmount(WETH[chainId], currencyAmount.raw);
   invariant(false, 'CURRENCY');
 }
 
 function wrappedCurrency(currency: Currency, chainId: ChainId): Token {
-  const etherMap = ETHER_DECIMALS_NAMES_SYMBOLS_MAP[chainId];
   if (currency instanceof Token) return currency;
-  if (currency === ETHER(etherMap.decimals, etherMap.name, etherMap.symbol)) return WETH[chainId];
+  if (currency === ETHER) return WETH[chainId];
   invariant(false, 'CURRENCY');
 }
 
@@ -176,28 +174,16 @@ export class Trade {
         nextPairs[i - 1] = nextPair;
       }
     }
-    const etherMap = ETHER_DECIMALS_NAMES_SYMBOLS_MAP[route.pairs[0].chainId];
     this.route = route;
     this.tradeType = tradeType;
-    this.inputAmount =
-      tradeType === TradeType.EXACT_INPUT
-        ? amount
-        : route.input === ETHER(etherMap.decimals, etherMap.name, etherMap.symbol)
-        ? CurrencyAmount.ether(amounts[0].raw, route.pairs[0].chainId)
-        : amounts[0];
+    this.inputAmount = tradeType === TradeType.EXACT_INPUT ? amount : route.input === ETHER ? CurrencyAmount.ether(amounts[0].raw) : amounts[0];
     this.outputAmount =
       tradeType === TradeType.EXACT_OUTPUT
         ? amount
-        : route.output === ETHER(etherMap.decimals, etherMap.name, etherMap.symbol)
-        ? CurrencyAmount.ether(amounts[amounts.length - 1].raw, route.pairs[0].chainId)
+        : route.output === ETHER
+        ? CurrencyAmount.ether(amounts[amounts.length - 1].raw)
         : amounts[amounts.length - 1];
-    this.executionPrice = new Price(
-      this.inputAmount.currency,
-      this.outputAmount.currency,
-      this.inputAmount.raw,
-      this.outputAmount.raw,
-      route.pairs[0].chainId
-    );
+    this.executionPrice = new Price(this.inputAmount.currency, this.outputAmount.currency, this.inputAmount.raw, this.outputAmount.raw);
     this.nextMidPrice = Price.fromRoute(new Route(nextPairs, route.input));
     this.priceImpact = computePriceImpact(route.midPrice, this.inputAmount, this.outputAmount);
   }
@@ -214,7 +200,7 @@ export class Trade {
       const slippageAdjustedAmountOut = new Fraction(ONE).add(slippageTolerance).invert().multiply(this.outputAmount.raw).quotient;
       return this.outputAmount instanceof TokenAmount
         ? new TokenAmount(this.outputAmount.token, slippageAdjustedAmountOut)
-        : CurrencyAmount.ether(slippageAdjustedAmountOut, this.route.pairs[0].chainId);
+        : CurrencyAmount.ether(slippageAdjustedAmountOut);
     }
   }
 
@@ -230,7 +216,7 @@ export class Trade {
       const slippageAdjustedAmountIn = new Fraction(ONE).add(slippageTolerance).multiply(this.inputAmount.raw).quotient;
       return this.inputAmount instanceof TokenAmount
         ? new TokenAmount(this.inputAmount.token, slippageAdjustedAmountIn)
-        : CurrencyAmount.ether(slippageAdjustedAmountIn, this.route.pairs[0].chainId);
+        : CurrencyAmount.ether(slippageAdjustedAmountIn);
     }
   }
 
