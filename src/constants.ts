@@ -4,7 +4,11 @@ import JSBI from 'jsbi';
 export type BigintIsh = JSBI | number | string;
 
 export enum ChainId {
-  BSC_TESTNET = 97
+  BSC_TESTNET = 97,
+  BITGERT_MAINNET = 32520,
+  GATECHAIN_MAINNET = 86,
+  OMAX_MAINNET = 311,
+  BSC_MAINNET = 56
 }
 
 export enum TradeType {
@@ -19,15 +23,27 @@ export enum Rounding {
 }
 
 export const FACTORY_ADDRESS_MAP = {
-  [ChainId.BSC_TESTNET]: '0x583DD96cD23602979333B98bB81dFd22b55faa46'
+  [ChainId.BSC_TESTNET]: '0x583DD96cD23602979333B98bB81dFd22b55faa46',
+  [ChainId.BSC_MAINNET]: '0x6A6CFF59de25175A5BC9e4796C88a73b2c581b49',
+  [ChainId.GATECHAIN_MAINNET]: '0xb562b09Bc2317D18a82FD415B7Fb33540Db7e723',
+  [ChainId.OMAX_MAINNET]: '0x64FAF984Bf60dE19e24238521814cA98574E3b00',
+  [ChainId.BITGERT_MAINNET]: '0x46e65AfC0BBF7cc037D82AC2eA9aaf560dD962Cc'
 };
 
 export const INIT_CODE_HASH_MAP = {
-  [ChainId.BSC_TESTNET]: '0xde779d283b8738f357e793b9d75c6a3c198479994ba2b4882e5843d46b762857'
+  [ChainId.BSC_TESTNET]: '0xde779d283b8738f357e793b9d75c6a3c198479994ba2b4882e5843d46b762857',
+  [ChainId.BITGERT_MAINNET]: '0xde779d283b8738f357e793b9d75c6a3c198479994ba2b4882e5843d46b762857',
+  [ChainId.BSC_MAINNET]: '0xde779d283b8738f357e793b9d75c6a3c198479994ba2b4882e5843d46b762857',
+  [ChainId.GATECHAIN_MAINNET]: '0xde779d283b8738f357e793b9d75c6a3c198479994ba2b4882e5843d46b762857',
+  [ChainId.OMAX_MAINNET]: '0xde779d283b8738f357e793b9d75c6a3c198479994ba2b4882e5843d46b762857'
 };
 
 export const DEFAULT_RPC_URLS_MAP = {
-  [ChainId.BSC_TESTNET]: 'https://data-seed-prebsc-1-s3.binance.org:8545'
+  [ChainId.BSC_TESTNET]: 'https://data-seed-prebsc-1-s3.binance.org:8545',
+  [ChainId.BITGERT_MAINNET]: 'https://rpc.icecreamswap.com',
+  [ChainId.BSC_MAINNET]: 'https://bsc-dataseed4.defibit.io',
+  [ChainId.GATECHAIN_MAINNET]: 'https://evm.gatenode.cc',
+  [ChainId.OMAX_MAINNET]: 'https://mainapi.omaxray.com'
 };
 
 export const MINIMUM_LIQUIDITY = JSBI.BigInt(1000);

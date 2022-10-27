@@ -66,5 +66,37 @@ export const WETH = {
     'WtBNB',
     'Wrapped tBNB',
     'https://www.binance.org'
+  ),
+  [ChainId.BITGERT_MAINNET]: new Token(
+    ChainId.BITGERT_MAINNET,
+    '0xD75411C6A3fEf2278E51EEaa73cdE8352c59eFEd',
+    18,
+    'WBRISE',
+    'Wrapped Brise',
+    'https://bitgert.com'
+  ),
+  [ChainId.BSC_MAINNET]: new Token(
+    ChainId.BSC_MAINNET,
+    '0x2F856544d28c793F4461CE639709AA8C01D12745',
+    18,
+    'WBNB',
+    'Wrapped BNB',
+    'https://www.binance.org'
+  ),
+  [ChainId.GATECHAIN_MAINNET]: new Token(
+    ChainId.GATECHAIN_MAINNET,
+    '0x5CaD84E500d73A9bcCdeB21eDD9720FFb7531c56',
+    18,
+    'WGATE',
+    'Wrapped Gatecoin',
+    'https://www.gatechain.io'
+  ),
+  [ChainId.OMAX_MAINNET]: new Token(
+    ChainId.OMAX_MAINNET,
+    '0x2e19F01B81628CCd8cFce9F7d9F2fACC77343b7c',
+    18,
+    'WOMAX',
+    'Wrapped OMAX',
+    'https://www.omaxcoin.com'
   )
 };

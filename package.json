@@ -1,7 +1,7 @@
 {
   "name": "quasar-sdk-core",
   "license": "MIT",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "🛠 An SDK for building applications on top of the Vefi DEX.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -19,7 +19,8 @@
     "build": "tsdx build",
     "start": "tsdx watch",
     "test": "tsdx test",
-    "prepublishOnly": "tsdx build"
+    "prepublishOnly": "tsdx build",
+    "format": "prettier --write **/**/*.{js,json,ts}"
   },
   "dependencies": {
     "big.js": "^5.2.2",
