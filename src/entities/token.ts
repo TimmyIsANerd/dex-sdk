@@ -98,5 +98,13 @@ export const WETH = {
     'WOMAX',
     'Wrapped OMAX',
     'https://www.omaxcoin.com'
+  ),
+  [ChainId.WANCHAIN_MAINNET]: new Token(
+    ChainId.WANCHAIN_MAINNET,
+    '0x2e19F01B81628CCd8cFce9F7d9F2fACC77343b7c',
+    18,
+    'WWAN',
+    'Wrapped WAN',
+    'https://www.wanchain.org'
   )
 };
