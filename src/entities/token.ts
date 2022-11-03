@@ -106,5 +106,13 @@ export const WETH = {
     'WWAN',
     'Wrapped WAN',
     'https://www.wanchain.org'
+  ),
+  [ChainId.OKX_MAINNET]: new Token(
+    ChainId.OKX_MAINNET,
+    '0xf886ABaCe837E5EC0CF7037B4d2198F7a1bf35B5',
+    18,
+    'WOKX',
+    'Wrapped OKX',
+    'https://www.okx.com'
   )
 };
