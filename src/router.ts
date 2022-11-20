@@ -21,6 +21,10 @@ export interface TradeOptions {
    * The account that should receive the output of the swap.
    */
   recipient: string;
+  /**
+   * Whether any of the tokens in the path are fee on transfer tokens, which should be handled with special methods
+   */
+  feeOnTransfer?: boolean;
 }
 
 export interface TradeOptionsDeadline extends Omit<TradeOptions, 'ttl'> {
@@ -81,6 +85,7 @@ export abstract class Router {
     const path: string[] = trade.route.path.map((token) => token.address);
     const deadline =
       'ttl' in options ? `0x${(Math.floor(new Date().getTime() / 1000) + options.ttl).toString(16)}` : `0x${options.deadline.toString(16)}`;
+    const useFeeOnTransfer = Boolean(options.feeOnTransfer);
 
     let methodName: string;
     let args: (string | string[])[];
@@ -88,23 +93,24 @@ export abstract class Router {
     switch (trade.tradeType) {
       case TradeType.EXACT_INPUT:
         if (etherIn) {
-          methodName = 'swapExactETHForTokens';
+          methodName = useFeeOnTransfer ? 'swapExactETHForTokensSupportingFeeOnTransferTokens' : 'swapExactETHForTokens';
           // (uint amountOutMin, address[] calldata path, address to, uint deadline)
           args = [amountOut, path, to, deadline];
           value = amountIn;
         } else if (etherOut) {
-          methodName = 'swapExactTokensForETH';
+          methodName = useFeeOnTransfer ? 'swapExactTokensForETHSupportingFeeOnTransferTokens' : 'swapExactTokensForETH';
           // (uint amountIn, uint amountOutMin, address[] calldata path, address to, uint deadline)
           args = [amountIn, amountOut, path, to, deadline];
           value = ZERO_HEX;
         } else {
-          methodName = 'swapExactTokensForTokens';
+          methodName = useFeeOnTransfer ? 'swapExactTokensForTokensSupportingFeeOnTransferTokens' : 'swapExactTokensForTokens';
           // (uint amountIn, uint amountOutMin, address[] calldata path, address to, uint deadline)
           args = [amountIn, amountOut, path, to, deadline];
           value = ZERO_HEX;
         }
         break;
       case TradeType.EXACT_OUTPUT:
+        invariant(!useFeeOnTransfer, 'EXACT_OUT_FOT');
         if (etherIn) {
           methodName = 'swapETHForExactTokens';
           // (uint amountOut, address[] calldata path, address to, uint deadline)
