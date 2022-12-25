@@ -114,5 +114,13 @@ export const WETH = {
     'WOKX',
     'Wrapped OKX',
     'https://www.okx.com'
+  ),
+  [ChainId.ETH_MAINNET]: new Token(
+    ChainId.ETH_MAINNET,
+    '0xfbAE861cbDFBB11AC0bC64c27AE7fEd3f99B8737',
+    18,
+    'WETH',
+    'Wrapped Ether',
+    'https://ethereum.org'
   )
 };
