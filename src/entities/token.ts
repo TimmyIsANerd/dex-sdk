@@ -122,5 +122,13 @@ export const WETH = {
     'WETH',
     'Wrapped Ether',
     'https://ethereum.org'
+  ),
+  [ChainId.MATIC_MAINNET]: new Token(
+    ChainId.MATIC_MAINNET,
+    '0x15EDEa3D3b4C59E8d76B8BF9374ed4f60F58e3b7',
+    18,
+    'WMATIC',
+    'Wrapped Matic',
+    'https://polygon.technology'
   )
 };
