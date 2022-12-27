@@ -11,7 +11,8 @@ export enum ChainId {
   BSC_MAINNET = 56,
   WANCHAIN_MAINNET = 888,
   OKX_MAINNET = 66,
-  ETH_MAINNET = 1
+  ETH_MAINNET = 1,
+  MATIC_MAINNET = 137
 }
 
 export enum TradeType {
@@ -33,7 +34,8 @@ export const FACTORY_ADDRESS_MAP = {
   [ChainId.BITGERT_MAINNET]: '0x46e65AfC0BBF7cc037D82AC2eA9aaf560dD962Cc',
   [ChainId.WANCHAIN_MAINNET]: '0x64FAF984Bf60dE19e24238521814cA98574E3b00',
   [ChainId.OKX_MAINNET]: '0x64FAF984Bf60dE19e24238521814cA98574E3b00',
-  [ChainId.ETH_MAINNET]: '0x2CF6165c121EFadab70C42CEd85De8f742B29AA4'
+  [ChainId.ETH_MAINNET]: '0x2CF6165c121EFadab70C42CEd85De8f742B29AA4',
+  [ChainId.MATIC_MAINNET]: '0xcA01ffA17C46ba079572147EDE463B9F0690e1e6'
 };
 
 export const INIT_CODE_HASH_MAP = {
@@ -44,7 +46,8 @@ export const INIT_CODE_HASH_MAP = {
   [ChainId.OMAX_MAINNET]: '0xde779d283b8738f357e793b9d75c6a3c198479994ba2b4882e5843d46b762857',
   [ChainId.WANCHAIN_MAINNET]: '0xde779d283b8738f357e793b9d75c6a3c198479994ba2b4882e5843d46b762857',
   [ChainId.OKX_MAINNET]: '0xde779d283b8738f357e793b9d75c6a3c198479994ba2b4882e5843d46b762857',
-  [ChainId.ETH_MAINNET]: '0xde779d283b8738f357e793b9d75c6a3c198479994ba2b4882e5843d46b762857'
+  [ChainId.ETH_MAINNET]: '0xde779d283b8738f357e793b9d75c6a3c198479994ba2b4882e5843d46b762857',
+  [ChainId.MATIC_MAINNET]: '0xde779d283b8738f357e793b9d75c6a3c198479994ba2b4882e5843d46b762857'
 };
 
 export const DEFAULT_RPC_URLS_MAP = {
@@ -55,7 +58,8 @@ export const DEFAULT_RPC_URLS_MAP = {
   [ChainId.OMAX_MAINNET]: 'https://mainapi.omaxray.com',
   [ChainId.WANCHAIN_MAINNET]: 'https://gwan-ssl.wandevs.org:56891',
   [ChainId.OKX_MAINNET]: 'https://exchainrpc.okex.org',
-  [ChainId.ETH_MAINNET]: 'https://eth-rpc.gateway.pokt.network'
+  [ChainId.ETH_MAINNET]: 'https://eth-rpc.gateway.pokt.network',
+  [ChainId.MATIC_MAINNET]: 'https://matic-mainnet.chainstacklabs.com'
 };
 
 export const MINIMUM_LIQUIDITY = JSBI.BigInt(1000);
