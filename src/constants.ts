@@ -65,7 +65,9 @@ export const DEFAULT_RPC_URLS_MAP = {
   [ChainId.WANCHAIN_MAINNET]: 'https://gwan-ssl.wandevs.org:56891',
   [ChainId.OKX_MAINNET]: 'https://exchainrpc.okex.org',
   [ChainId.ETH_MAINNET]: 'https://eth-rpc.gateway.pokt.network',
-  [ChainId.MATIC_MAINNET]: 'https://polygon-rpc.com/'
+  [ChainId.MATIC_MAINNET]: 'https://polygon-rpc.com/',
+  [ChainId.ASTAR_MAINNET]: 'https://nodes.vefinetwork.org/astar',
+  [ChainId.TELOS_MAINNET]: 'https://mainnet.telos.net/evm'
 };
 
 export const MINIMUM_LIQUIDITY = JSBI.BigInt(1000);
