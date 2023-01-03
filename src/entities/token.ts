@@ -130,5 +130,21 @@ export const WETH = {
     'WMATIC',
     'Wrapped Matic',
     'https://polygon.technology'
+  ),
+  [ChainId.TELOS_MAINNET]: new Token(
+    ChainId.TELOS_MAINNET,
+    '0x61F2ddAa57B328feE381D13D2E0E91C604a43fF7',
+    18,
+    'WTLOS',
+    'Wrapped Telos',
+    'https://telos.net'
+  ),
+  [ChainId.ASTAR_MAINNET]: new Token(
+    ChainId.ASTAR_MAINNET,
+    '0xfbAE861cbDFBB11AC0bC64c27AE7fEd3f99B8737',
+    18,
+    'WASTR',
+    'Wrapped Astar',
+    'https://astar.network'
   )
 };
