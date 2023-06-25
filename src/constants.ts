@@ -57,8 +57,8 @@ export const INIT_CODE_HASH_MAP = {
 };
 
 export const DEFAULT_RPC_URLS_MAP = {
-  [ChainId.BSC_TESTNET]: 'https://data-seed-prebsc-1-s3.binance.org:8545',
-  [ChainId.BITGERT_MAINNET]: 'https://nodes.vefinetwork.org/bitgert',
+  [ChainId.BSC_TESTNET]: 'https://bsc-testnet.publicnode.com',
+  [ChainId.BITGERT_MAINNET]: 'https://rpc.icecreamswap.com',
   [ChainId.BSC_MAINNET]: 'https://bsc-dataseed4.defibit.io',
   [ChainId.GATECHAIN_MAINNET]: 'https://evm.gatenode.cc',
   [ChainId.OMAX_MAINNET]: 'https://mainapi.omaxray.com',
@@ -66,7 +66,7 @@ export const DEFAULT_RPC_URLS_MAP = {
   [ChainId.OKX_MAINNET]: 'https://exchainrpc.okex.org',
   [ChainId.ETH_MAINNET]: 'https://eth-rpc.gateway.pokt.network',
   [ChainId.MATIC_MAINNET]: 'https://polygon-rpc.com/',
-  [ChainId.ASTAR_MAINNET]: 'https://nodes.vefinetwork.org/astar',
+  [ChainId.ASTAR_MAINNET]: 'https://1rpc.io/astr',
   [ChainId.TELOS_MAINNET]: 'https://mainnet.telos.net/evm'
 };
 
